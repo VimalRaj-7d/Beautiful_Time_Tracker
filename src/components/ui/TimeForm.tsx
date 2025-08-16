@@ -16,7 +16,8 @@ function TimeForm() {
       value='5'
       onChange={(e)=>console.log(e.target.value)}/>
 
-      <Button className='w-full'>Add Activity</Button>
+      <Button className='w-full'>Add New Activity </Button>
+
     </div>
   )
 }
