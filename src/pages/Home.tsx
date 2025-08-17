@@ -1,6 +1,5 @@
 import TimeForm from "@/components/ui/TimeForm";
 import TimeChart from "@/components/ui/TimeChart";
-import { Activity } from "lucide-react";
 import { useState } from "react";
 
 const Home =()=> {

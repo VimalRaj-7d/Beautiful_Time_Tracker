@@ -1,46 +1,49 @@
-
-
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
-interface Props{
-  onAdd:(activity:string,hours:number)=>void
+interface Props {
+  onAdd: (activity: string, hours: number) => void;
 }
 
-const TimeForm=({onAdd}:Props) =>{
+const TimeForm = ({ onAdd }: Props) => {
+  const [activity, setActivity] = useState("");
+  const [hours, setHours] = useState("");
 
-  const [activity,setActivity]= useState("");
-  const [hours,setHours]=useState("");
+  const handleSubmit = () => {
+    if (!activity.trim() || !hours) {
+      alert("Please fill all fields");
+      return;
+    }
 
-  const handlesubmit = ()=>{
-    if(!activity.trim() || !hours) alert("please fill it");
-    console.log(activity,Number(hours));
+    // ✅ Call parent callback
+    onAdd(activity, Number(hours));
+
+    // Clear fields after submit
     setActivity("");
     setHours("");
-
-    
-  }
+  };
 
   return (
-    <div className='space-y-3'>
-      
+    <div className="space-y-3">
+      <Input 
+        placeholder="Activity (e.g. Sleep)" 
+        value={activity}
+        onChange={(e) => setActivity(e.target.value)}
+      />
 
+      <Input 
+        placeholder="Hours (e.g. 8)" 
+        type="number"
+        value={hours}
+        onChange={(e) => setHours(e.target.value)}
+      />
 
-    <Input 
-      placeholder='Active (e.g sleep)'
-      value={activity}
-      onChange={(e)=>setActivity(e.target.value)}/>
-
-    <Input
-      placeholder='hours (e.g 8)'
-      value={hours}
-      onChange={(e)=>setHours(e.target.value)}/>
-
-      <Button className='w-full' onClick={handlesubmit}>Add New Activity </Button>
-
+      <Button className="w-full" onClick={handleSubmit}>
+        Add New Activity
+      </Button>
     </div>
-  )
-}
+  );
+};
 
-export default TimeForm
+export default TimeForm;
